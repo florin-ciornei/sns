@@ -1,5 +1,11 @@
 @import './inputs';
 
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -12,4 +18,9 @@ textarea {
 ::placeholder {
     font-family: 'Open Sans', sans-serif;
     color: $grey-500;
+}
+
+.page-content {
+    margin-top: 100px; //compensate for header
+    padding: 0 160px;
 }
