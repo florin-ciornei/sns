@@ -1,0 +1,15 @@
+.icon-button {
+    border-radius: $border-radius;
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+
+    &:hover {
+        background-color: $grey-200;
+    }
+
+    &:active {
+        background-color: $grey-300;
+    }
+}
