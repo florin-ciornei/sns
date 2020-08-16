@@ -1,5 +1,14 @@
 <template>
   <div id="app">
+    <div>
+      Last notes
+      <div style="display:flex;">
+        <NotePreview />
+        <NotePreview />
+        <NotePreview />
+        <NotePreview />
+      </div>
+    </div>
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
   </div>
@@ -8,10 +17,12 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "./components/HelloWorld.vue";
+import NotePreview from "./components/NotePreview.vue";
 
 @Component({
   components: {
-    HelloWorld
+    HelloWorld,
+    NotePreview
   }
 })
 export default class App extends Vue {}

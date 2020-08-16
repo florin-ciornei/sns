@@ -3,8 +3,7 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow;
   overflow: hidden;
   background-color: white;
 
@@ -38,7 +37,7 @@
         <i class="material-icons" style="margin-right: 2px;margin-bottom: -2px;">link</i>
         securenote.com/n/2184cn912m
         <div style="flex: 1;text-align: right;">
-          <button type="button" class="icon-button" @click="isFullScreen=!isFullScreen">
+          <button type="button" class="icon-button" @click="isFullScreen =! isFullScreen">
             <i class="material-icons">{{isFullScreen?"close_fullscreen":"open_in_full"}}</i>
           </button>
           <!-- <i class="material-icons">open_in_new</i>
