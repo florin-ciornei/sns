@@ -1,0 +1,13 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+input,
+textarea {
+    font: inherit;
+}
+
+::placeholder {
+    font-family: 'Open Sans', sans-serif;
+    color: $grey-500;
+}
