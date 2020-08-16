@@ -19,7 +19,10 @@
 
 <template>
   <div class="preview">
-    <img src="./../assets/images/NotePreview.png" style="width:128px;filter:blur(5px)" />
+    <img
+      src="./../assets/images/NotePreview.png"
+      style="width:128px;filter:blur(5px)"
+    />
     <div class="color-circle"></div>
   </div>
 </template>
@@ -29,5 +32,3 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 export default class NotePreview extends Vue {}
 </script>
-
-

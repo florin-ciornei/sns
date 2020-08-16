@@ -1,7 +1,7 @@
 <template>
   <div>
     <button type="button" @click="textEncrypt()">Test encrypt</button>
-    {{encryptResult}}
+    {{ encryptResult }}
     <br />
     <NoteEditor />
   </div>
@@ -28,5 +28,4 @@ export default class HelloWorld extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
