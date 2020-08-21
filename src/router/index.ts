@@ -13,14 +13,12 @@ const routes: Array<RouteConfig> = [
   {
     path: "/my-notes",
     name: "MyNotes",
-    component: () =>
-      import("../views/MyNotes.vue")
+    component: () => import("../views/MyNotes.vue")
   },
   {
     path: "/about",
     name: "About",
-    component: () =>
-      import("../views/About.vue")
+    component: () => import("../views/About.vue")
   }
 ];
 

@@ -49,13 +49,20 @@
         <br />
         <div class="explanatory-texts">
           <div>
-            <div class="title blue">Security</div>Your note never leaves the browser unencrypted. Only the person who knows the password can decrypt, read and edit it.
+            <div class="title blue">Security</div>
+            Your note never leaves the browser unencrypted. Only the person who
+            knows the password can decrypt, read and edit it.
           </div>
           <div>
-            <div class="title green">Privacy</div>We store only the encrypted version of your note, so even we cannot read it. This also prevents us from selling your data to 3rd parties.
+            <div class="title green">Privacy</div>
+            We store only the encrypted version of your note, so even we cannot
+            read it. This also prevents us from selling your data to 3rd
+            parties.
           </div>
           <div>
-            <div class="title red">Anonymity</div>You can create notes without having an account, and your IP and location aren't stored.
+            <div class="title red">Anonymity</div>
+            You can create notes without having an account, and your IP and
+            location aren't stored.
           </div>
         </div>
       </div>

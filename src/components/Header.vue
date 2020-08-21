@@ -56,7 +56,7 @@
     </div>
     <div class="searchbar-container">
       <i class="material-icons">search</i>
-      <input type="text" />
+      <input placeholder="Author, title or #tag" type="text" />
     </div>
     <div class="links">
       <router-link to="/my-notes">My notes</router-link>
@@ -71,4 +71,3 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class Header extends Vue {}
 </script>
-
