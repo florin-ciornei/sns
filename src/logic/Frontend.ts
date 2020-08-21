@@ -1,25 +1,25 @@
-import * as Note from "./Note";
+import { Note, NoteMetadata, NoteContents } from "./Note";
 import Author from "./Author";
 
 interface Frontend {
   /** If the authorId in note is empty, note is assigned to the local author.
    *  If the authorId is not empty, not is assigned to the remote author.
    */
-  saveNote(note: Note.Note, encryptionKey?: string): any; //TODO async
+  saveNote(note: Note, encryptionKey?: string): Promise<Note>;
   /** If all the notes from an author are deleted, the author is deleted */
-  deleteNote(noteMetadata: Note.NoteMetadata): any; //TODO async
+  deleteNote(noteMetadata: NoteMetadata): Promise<boolean>;
 
-  getRemoteAuthor(authorId: string): Author; //TODO async
+  getRemoteAuthor(authorId: string): Promise<Author>;
   getLocalAuthor(): Author;
 
-  getRemoteAuthorNotes(authorName: string): Note.NoteMetadata[]; //TODO async
+  getRemoteAuthorNotes(authorName: string): Promise<NoteMetadata[]>;
 
-  getLocalNotes(): Note.NoteMetadata[];
+  getLocalNotes(): NoteMetadata[];
   getNoteContents(
-    noteMetadata: Note.NoteMetadata,
+    noteMetadata: NoteMetadata,
     encryptionKey?: string
-  ): Note.NoteContents; //TODO async
+  ): Promise<NoteContents>;
 
   saveLocalAuthor(author: Author): any;
-  saveRemoteAuthor(author: Author): any; //TODO async
+  saveRemoteAuthor(author: Author): Promise<Author>;
 }
