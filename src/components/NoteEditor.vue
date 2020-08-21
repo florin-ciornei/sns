@@ -58,6 +58,7 @@
       <textarea
         rows="15"
         placeholder="Start typing here to create a note"
+        @keyup="onAnyChange"
       ></textarea>
       <div>
         <div class="label">
@@ -84,9 +85,22 @@ export default class NoteEditor extends Vue {
   isFullScreen = false;
   //vue doesn't support iteration and model for a string array, that's why the tag value is encapsulated in an object
   tags: { text: string }[] = [];
+  saveTimer: any;
 
   addTag() {
     this.tags.push({ text: "" });
+  }
+
+  /**
+   * When any input changes in the editor, a timer is started that will save the note after some time.
+   */
+  onAnyChange() {
+    if (this.saveTimer != undefined) clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(this.save, 3000);
+  }
+
+  save() {
+    console.log("save the note");
   }
 }
 </script>
