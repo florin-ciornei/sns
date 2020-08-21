@@ -107,7 +107,7 @@ export default class NoteEditor extends Vue {
   }
 
   /**
-   * The color array will contain a single value
+   * @param color contains a single color, or is empty if the color is deselected
    */
   onColorSelect(color: string[]) {
     if (color.length == 0) {
