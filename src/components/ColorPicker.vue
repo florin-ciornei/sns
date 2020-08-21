@@ -4,7 +4,7 @@
       v-for="colorName in colorNameList"
       :key="colorName"
       :style="{ 'background-color': colors[colorName] }"
-      :class="{ selected: selectColorNames.includes(colorName) }"
+      :class="{ selected: selectedColorNames.includes(colorName) }"
       @click="onColorCircleClick(colorName)"
       class="color-circle"
     >
@@ -18,6 +18,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import * as Constants from "../logic/Constants";
+import * as _ from "lodash";
 
 @Component
 export default class ColorPicker extends Vue {
@@ -27,22 +28,30 @@ export default class ColorPicker extends Vue {
   canSelectMultipleColors!: boolean;
   colorNameList = Object.keys(Constants.colors);
   colors = Constants.colors;
-  selectColorNames: string[] = [];
+  selectedColorNames: string[] = [];
 
   onColorCircleClick(color: string) {
     if (this.canSelectMultipleColors) {
       //if multiple colors can be selected, add or remove that value from the array
-      if (this.selectColorNames.includes(color)) {
-        this.selectColorNames = this.selectColorNames.filter(e => e != color);
+      if (this.selectedColorNames.includes(color)) {
+        this.selectedColorNames = this.selectedColorNames.filter(
+          e => e != color
+        );
       } else {
-        this.selectColorNames.push(color);
+        this.selectedColorNames.push(color);
       }
     } else {
       //if only a single color can be selected, the colors array will contain only that color name
-      this.selectColorNames = [color];
+      if (_.isEqual(this.selectedColorNames, [color])) {
+        //deselect color
+        this.selectedColorNames = [];
+      } else {
+        //select color
+        this.selectedColorNames = [color];
+      }
     }
 
-    this.onColorSelected(this.selectColorNames);
+    this.onColorSelected(this.selectedColorNames);
   }
 }
 </script>
