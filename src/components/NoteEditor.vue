@@ -33,21 +33,45 @@
 <template>
   <div v-bind:class="{ 'full-screen-container': isFullScreen }">
     <div class="container">
-      <div style="font-weight: 700;color:var(--grey-600);display:flex;align-items: center;">
-        <i class="material-icons" style="margin-right: 2px;margin-bottom: -2px;">link</i>
+      <div
+        style="font-weight: 700;color:var(--grey-600);display:flex;align-items: center;"
+      >
+        <i class="material-icons" style="margin-right: 2px;margin-bottom: -2px;"
+          >link</i
+        >
         securenote.com/n/2184cn912m
         <div style="flex: 1;text-align: right;">
-          <button type="button" class="icon-button" @click="isFullScreen = !isFullScreen">
-            <i class="material-icons">{{ isFullScreen ? "close_fullscreen" : "open_in_full" }}</i>
+          <button
+            type="button"
+            class="icon-button"
+            @click="isFullScreen = !isFullScreen"
+          >
+            <i class="material-icons">{{
+              isFullScreen ? "close_fullscreen" : "open_in_full"
+            }}</i>
           </button>
           <!-- <i class="material-icons">open_in_new</i>
           <i class="material-icons">more_vert</i>-->
         </div>
       </div>
       <input type="text" placeholder="Title" />
-      <textarea rows="15" placeholder="Start typing here to create a note"></textarea>
+      <textarea
+        rows="15"
+        placeholder="Start typing here to create a note"
+      ></textarea>
+      <div>
+        <div class="label">
+          {{ $t("Tags") }}
+        </div>
+        <div>
+          <input v-for="(tag, index) in tags" :key="index" v-model="tag.text" />
+          <button type="button" @click="addTag()" class="text-button">
+            {{ $t("add") }}
+          </button>
+        </div>
+      </div>
       <input type="password" placeholder="Password" />
-      <div>{{ $t('hello') }}</div>
+      <div>{{ $t("hello") }}</div>
     </div>
   </div>
 </template>
@@ -58,5 +82,11 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class NoteEditor extends Vue {
   isFullScreen = false;
+  //vue doesn't support iteration and model for a string array, that's why the tag value is encapsulated in an object
+  tags: { text: string }[] = [];
+
+  addTag() {
+    this.tags.push({ text: "" });
+  }
 }
 </script>

@@ -117,12 +117,6 @@ export default class NotesSection extends Vue {
   margin-right: 2rem;
 }
 
-.label {
-  font-weight: 700;
-  color: $grey-500;
-  font-size: 0.8rem;
-}
-
 .color-circle-container {
   display: flex;
 
