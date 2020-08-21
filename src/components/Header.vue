@@ -9,6 +9,7 @@
   right: 0;
   background-color: white;
   border-bottom: 1px solid $grey-400;
+  z-index: 1;
 }
 
 .logo-container {

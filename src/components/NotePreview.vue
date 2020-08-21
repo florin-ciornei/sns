@@ -1,13 +1,25 @@
 <style scoped lang="scss">
+$note-size: 150px;
 .preview {
   box-shadow: $shadow;
   border-radius: $border-radius;
+  width: $note-size;
+  height: $note-size;
   position: relative;
   margin: 8px;
+  background-color: white;
+
+  .content {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    overflow: hidden;
+  }
 }
 
 .color-circle {
-  background-color: $blue;
   position: absolute;
   bottom: 8px;
   left: 8px;
@@ -19,16 +31,28 @@
 
 <template>
   <div class="preview">
-    <img
-      src="./../assets/images/NotePreview.png"
-      style="width:128px;filter:blur(5px)"
-    />
-    <div class="color-circle"></div>
+    <div
+      class="content"
+      :style="{ filter: note.metadata.isEncrypted() ? 'blur(5px)' : '' }"
+    >
+      {{ note.contents.text }}
+    </div>
+    <div
+      v-if="note.metadata.color != ''"
+      class="color-circle"
+      :style="{ 'background-color': colors[note.metadata.color] }"
+    ></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import { Note } from "@/logic/Note";
+import { colors } from "@/logic/Constants";
 
-export default class NotePreview extends Vue {}
+@Component
+export default class NotePreview extends Vue {
+  @Prop() note: Note | undefined;
+  colors = colors;
+}
 </script>
