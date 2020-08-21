@@ -60,6 +60,7 @@
         placeholder="Start typing here to create a note"
         @keyup="onAnyChange"
       ></textarea>
+      <!-- TAGS !-->
       <div>
         <div class="label">
           {{ $t("Tags") }}
@@ -71,6 +72,18 @@
           </button>
         </div>
       </div>
+      <!-- COLORS !-->
+      <div>
+        <div class="label">
+          {{ $t("Color") }}
+        </div>
+        <div>
+          <color-picker
+            :onColorSelected="onColorSelect"
+            :canSelectMultipleColors="false"
+          ></color-picker>
+        </div>
+      </div>
       <input type="password" placeholder="Password" />
       <div>{{ $t("hello") }}</div>
     </div>
@@ -79,16 +92,30 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import ColorPicker from "./ColorPicker.vue";
 
-@Component
+@Component({ components: { "color-picker": ColorPicker } })
 export default class NoteEditor extends Vue {
   isFullScreen = false;
   //vue doesn't support iteration and model for a string array, that's why the tag value is encapsulated in an object
   tags: { text: string }[] = [];
+  color = "";
   saveTimer: any;
 
   addTag() {
     this.tags.push({ text: "" });
+  }
+
+  /**
+   * The color array will contain a single value
+   */
+  onColorSelect(color: string[]) {
+    if (color.length == 0) {
+      this.color = "";
+    } else {
+      this.color = color[0];
+    }
+    this.onAnyChange();
   }
 
   /**
