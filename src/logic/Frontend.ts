@@ -1,7 +1,7 @@
 import { Note, NoteMetadata, NoteContents } from "./Note";
 import Author from "./Author";
 
-interface Frontend {
+export default interface Frontend {
   /** If the authorId in note is empty, note is assigned to the local author.
    *  If the authorId is not empty, not is assigned to the remote author.
    */

@@ -47,4 +47,8 @@ export class Note {
     this.metadata = metadata;
   }
 
+  static CreateEmptyNote() {
+    return new Note(new NoteContents, new NoteMetadata);
+  }
+
 }

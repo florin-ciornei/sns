@@ -31,7 +31,10 @@
 </style>
 
 <template>
-  <div v-bind:class="{ 'full-screen-container': isFullScreen }">
+  <div
+    v-if="!onlyAsModal || (onlyAsModal && isFullScreen)"
+    v-bind:class="{ 'full-screen-container': isFullScreen }"
+  >
     <div class="container">
       <div
         style="font-weight: 700;color:var(--grey-600);display:flex;align-items: center;"
@@ -46,7 +49,8 @@
             class="icon-button"
             @click="isFullScreen = !isFullScreen"
           >
-            <i class="material-icons">{{
+            <i v-if="onlyAsModal" class="material-icons">close</i>
+            <i v-if="!onlyAsModal" class="material-icons">{{
               isFullScreen ? "close_fullscreen" : "open_in_full"
             }}</i>
           </button>
@@ -56,9 +60,10 @@
       </div>
       <input type="text" placeholder="Title" />
       <textarea
+        v-model="note.contents.text"
+        @keyup="onAnyChange"
         rows="15"
         placeholder="Start typing here to create a note"
-        @keyup="onAnyChange"
       ></textarea>
       <!-- TAGS !-->
       <div>
@@ -93,14 +98,35 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ColorPicker from "./ColorPicker.vue";
+import { EventBus } from "../logic/EventBus";
+import { Note } from "@/logic/Note";
 
 @Component({ components: { "color-picker": ColorPicker } })
 export default class NoteEditor extends Vue {
+  /** If true, the editor is not displayed, and will appear as a modal only when emitting the "edit-note" event. */
+  @Prop({ default: false }) readonly onlyAsModal!: boolean;
+
+  note: Note = Note.CreateEmptyNote();
+
   isFullScreen = false;
   //vue doesn't support iteration and model for a string array, that's why the tag value is encapsulated in an object
   tags: { text: string }[] = [];
   color = "";
   saveTimer: any;
+
+  created() {
+    EventBus.$on("edit-note", this.editNote);
+  }
+
+  beforeDestroy() {
+    EventBus.$off("edit-note", this.editNote);
+  }
+
+  //the "edit-note" event triggers this method
+  editNote(note: Note) {
+    this.note = note;
+    this.isFullScreen = true;
+  }
 
   addTag() {
     this.tags.push({ text: "" });

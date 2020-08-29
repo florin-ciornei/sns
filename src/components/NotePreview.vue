@@ -30,7 +30,7 @@ $note-size: 150px;
 </style>
 
 <template>
-  <div class="preview">
+  <div class="preview" @click="edit()">
     <div
       class="content"
       :style="{ filter: note.metadata.isEncrypted() ? 'blur(5px)' : '' }"
@@ -49,10 +49,15 @@ $note-size: 150px;
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { Note } from "@/logic/Note";
 import { colors } from "@/logic/Constants";
+import { EventBus } from "../logic/EventBus";
 
 @Component
 export default class NotePreview extends Vue {
   @Prop() note: Note | undefined;
   colors = colors;
+
+  edit() {
+    EventBus.$emit("edit-note", this.note);
+  }
 }
 </script>
