@@ -39,10 +39,10 @@
       <div
         style="font-weight: 700;color:var(--grey-600);display:flex;align-items: center;"
       >
-        <i class="material-icons" style="margin-right: 2px;margin-bottom: -2px;"
+        <!-- <i class="material-icons" style="margin-right: 2px;margin-bottom: -2px;"
           >link</i
         >
-        securenote.com/n/2184cn912m
+        securenote.com/n/2184cn912m -->
         <div style="flex: 1;text-align: right;">
           <button
             type="button"
@@ -100,8 +100,8 @@
           ></color-picker>
         </div>
       </div>
-      <input type="password" placeholder="Password" autocomplete="off" />
-      <div>{{ $t("hello") }}</div>
+      <!-- <input type="password" placeholder="Password" autocomplete="off" />
+      <div>{{ $t("hello") }}</div> -->
     </div>
   </div>
 </template>
