@@ -169,6 +169,9 @@ export default class NoteEditor extends Vue {
   }
 
   async save() {
+    this.note.metadata.tags = this.tags
+      .map(t => t.text)
+      .filter(t => t.trim().length > 0);
     this.note = await this.backend.saveNote(this.note);
   }
 }
