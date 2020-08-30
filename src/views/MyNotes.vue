@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import * as Constants from "../logic/Constants";
 import * as TestData from "../logic/TestData";
 import NotesSection from "@/components/NotesSection.vue";
@@ -29,5 +29,4 @@ export default class MyNotes extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
