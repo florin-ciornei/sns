@@ -161,7 +161,11 @@ export default class NoteEditor extends Vue {
    */
   onAnyChange() {
     if (this.saveTimer != undefined) clearTimeout(this.saveTimer);
-    this.saveTimer = setTimeout(this.save, 3000);
+
+    //save the notes only the it has some text
+    if (this.note.contents.text.trim().length > 0) {
+      this.saveTimer = setTimeout(this.save, 3000);
+    }
   }
 
   async save() {
