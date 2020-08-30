@@ -36,7 +36,7 @@ export class NoteMetadata {
   isPublic = false;
   createDate: Date = new Date();
   editDate: Date = new Date();
-  tags: Set<string> = new Set<string>();
+  tags: string[] = [];
   type: NoteType = NoteType.Local;
 
   isEncrypted(): boolean {

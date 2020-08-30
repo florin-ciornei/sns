@@ -54,8 +54,15 @@ export class Backend implements IBackend {
             return [];
         }
         const localNotes: Map<string, Note> = new Map<string, Note>(JSON.parse(localNotesString));
-        console.log(Array.from(localNotes.values()));
-        return Array.from(localNotes.values());
+        return Array.from(localNotes.values()).map(e => {
+            //this map is neccessary to cast the objects into the correct class, otherwise they are a simple Object, and are missing the methods            
+            const metadata = Object.assign(new NoteMetadata(), e.metadata);
+            const contents = Object.assign(new NoteContents(), e.contents);
+            const note: Note = Object.assign(Note.CreateEmptyNote(), e);
+            note.metadata = metadata;
+            note.contents = contents;
+            return note;
+        });
     }
     getNoteContents(noteMetadata: NoteMetadata, encryptionKey?: string | undefined): Promise<NoteContents> {
         throw new Error("Method not implemented.");
