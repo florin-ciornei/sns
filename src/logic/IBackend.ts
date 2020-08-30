@@ -1,7 +1,7 @@
-import { Note, NoteMetadata, NoteContents } from "./Note";
-import Author from "./Author";
+import { Note, NoteMetadata, NoteContents } from "./Model/Note";
+import Author from "./Model/Author";
 
-export default interface Frontend {
+export default interface IBackend {
   /** If the authorId in note is empty, note is assigned to the local author.
    *  If the authorId is not empty, not is assigned to the remote author.
    */
@@ -14,7 +14,7 @@ export default interface Frontend {
 
   getRemoteAuthorNotes(authorName: string): Promise<NoteMetadata[]>;
 
-  getLocalNotes(): NoteMetadata[];
+  getLocalNotes(): Note[];
   getNoteContents(
     noteMetadata: NoteMetadata,
     encryptionKey?: string

@@ -58,7 +58,13 @@
           <i class="material-icons">more_vert</i>-->
         </div>
       </div>
-      <input type="text" placeholder="Title" />
+      <input
+        type="text"
+        placeholder="Title"
+        autocomplete="off"
+        v-model="note.metadata.title"
+        @keyup="onAnyChange"
+      />
       <textarea
         v-model="note.contents.text"
         @keyup="onAnyChange"
@@ -71,7 +77,12 @@
           {{ $t("Tags") }}
         </div>
         <div>
-          <input v-for="(tag, index) in tags" :key="index" v-model="tag.text" />
+          <input
+            v-for="(tag, index) in tags"
+            :key="index"
+            v-model="tag.text"
+            @keyup="onAnyChange"
+          />
           <button type="button" @click="addTag()" class="text-button">
             {{ $t("add") }}
           </button>
@@ -89,7 +100,7 @@
           ></color-picker>
         </div>
       </div>
-      <input type="password" placeholder="Password" />
+      <input type="password" placeholder="Password" autocomplete="off" />
       <div>{{ $t("hello") }}</div>
     </div>
   </div>
@@ -100,6 +111,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import ColorPicker from "./ColorPicker.vue";
 import { EventBus } from "../logic/EventBus";
 import { Note } from "@/logic/Model/Note";
+import { Backend } from "@/logic/Backend";
 
 @Component({ components: { "color-picker": ColorPicker } })
 export default class NoteEditor extends Vue {
@@ -108,10 +120,10 @@ export default class NoteEditor extends Vue {
 
   note: Note = Note.CreateEmptyNote();
 
+  backend: Backend = new Backend();
   isFullScreen = false;
   //vue doesn't support iteration and model for a string array, that's why the tag value is encapsulated in an object
   tags: { text: string }[] = [];
-  color = "";
   saveTimer: any;
 
   created() {
@@ -137,9 +149,9 @@ export default class NoteEditor extends Vue {
    */
   onColorSelect(color: string[]) {
     if (color.length == 0) {
-      this.color = "";
+      this.note.metadata.color = "";
     } else {
-      this.color = color[0];
+      this.note.metadata.color = color[0];
     }
     this.onAnyChange();
   }
@@ -152,8 +164,8 @@ export default class NoteEditor extends Vue {
     this.saveTimer = setTimeout(this.save, 3000);
   }
 
-  save() {
-    console.log("save the note");
+  async save() {
+    this.note = await this.backend.saveNote(this.note);
   }
 }
 </script>
