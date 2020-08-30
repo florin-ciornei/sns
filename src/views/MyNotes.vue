@@ -12,7 +12,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import * as Constants from "../logic/Constants";
 import * as TestData from "../logic/TestData";
 import NotesSection from "@/components/NotesSection.vue";
-import { Note } from "@/logic/Note";
+import { Note } from "@/logic/Model/Note";
 import NoteEditor from "@/components/NoteEditor.vue";
 
 @Component({

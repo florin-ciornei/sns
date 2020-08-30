@@ -47,7 +47,7 @@ $note-size: 150px;
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Note } from "@/logic/Note";
+import { Note } from "@/logic/Model/Note";
 import { colors } from "@/logic/Constants";
 import { EventBus } from "../logic/EventBus";
 

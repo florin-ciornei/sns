@@ -37,7 +37,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Note } from "@/logic/Note";
+import { Note } from "@/logic/Model/Note";
 import NotePreview from "./NotePreview.vue";
 import * as _ from "lodash";
 import ColorPicker from "./ColorPicker.vue";

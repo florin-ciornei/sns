@@ -1,4 +1,4 @@
-import { Note, NoteContents, NoteMetadata, EncryptionType } from './Note';
+import { Note, NoteContents, NoteMetadata, EncryptionType } from './Model/Note';
 import { colors } from './Constants';
 
 /**

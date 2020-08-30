@@ -99,7 +99,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import ColorPicker from "./ColorPicker.vue";
 import { EventBus } from "../logic/EventBus";
-import { Note } from "@/logic/Note";
+import { Note } from "@/logic/Model/Note";
 
 @Component({ components: { "color-picker": ColorPicker } })
 export default class NoteEditor extends Vue {

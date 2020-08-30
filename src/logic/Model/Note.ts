@@ -19,6 +19,12 @@ export enum EncryptionType {
   TDES
 }
 
+export enum NoteType {
+  Local,//saved locally, LocalStorage for example
+  Author,//public note that is associated with an author
+  Anonymous//public note without an author
+}
+
 export class NoteMetadata {
   id = "";
   authorId = "";
@@ -31,6 +37,7 @@ export class NoteMetadata {
   createDate: Date = new Date();
   editDate: Date = new Date();
   tags: Set<string> = new Set<string>();
+  type: NoteType = NoteType.Local;
 
   isEncrypted(): boolean {
     return this.encryptionType != EncryptionType.NoEncryption;
